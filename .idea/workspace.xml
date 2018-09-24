@@ -6,7 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2df281d-51a3-4921-a6f0-2db1ee16bf48" name="Default Changelist" comment="" />
+    <list default="true" id="c2df281d-51a3-4921-a6f0-2db1ee16bf48" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/src/com/ssm/model/target/" />
     <ignored path="$PROJECT_DIR$/lib/target/" />
@@ -53,7 +55,7 @@
           <entry key="html" value="7" />
           <entry key="java" value="203" />
           <entry key="sql" value="8" />
-          <entry key="txt" value="2" />
+          <entry key="txt" value="3" />
           <entry key="xml" value="128" />
         </counts>
       </usages-collector>
@@ -62,7 +64,7 @@
           <entry key="CLASS" value="9" />
           <entry key="HTML" value="7" />
           <entry key="JAVA" value="203" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="PLAIN_TEXT" value="3" />
           <entry key="Scratch" value="8" />
           <entry key="XML" value="131" />
         </counts>
@@ -73,17 +75,17 @@
           <entry key="cell" value="29" />
           <entry key="dummy" value="45" />
           <entry key="html" value="112" />
-          <entry key="java" value="6844" />
+          <entry key="java" value="6848" />
           <entry key="sql" value="227" />
-          <entry key="txt" value="31" />
+          <entry key="txt" value="37" />
           <entry key="xml" value="3905" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="112" />
-          <entry key="JAVA" value="6844" />
-          <entry key="PLAIN_TEXT" value="76" />
+          <entry key="JAVA" value="6848" />
+          <entry key="PLAIN_TEXT" value="82" />
           <entry key="SQL" value="62" />
           <entry key="Scratch" value="256" />
           <entry key="XML" value="4009" />
@@ -99,8 +101,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ssm/main/controller/ModifyInfoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+            <state relative-caret-position="46">
+              <caret line="34" column="43" lean-forward="true" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -173,6 +175,9 @@
       <find>enctype</find>
       <find>enrollm</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -290,6 +295,7 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -609,8 +615,16 @@
       <workItem from="1537060310040" duration="22348000" />
       <workItem from="1537090498374" duration="7457000" />
       <workItem from="1537108479770" duration="3441000" />
-      <workItem from="1537757269638" duration="21490000" />
+      <workItem from="1537757269638" duration="22015000" />
     </task>
+    <task id="LOCAL-00001" summary="修改">
+      <created>1537780019811</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1537780019811</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -646,7 +660,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102882000" />
+    <option name="totallyTimeSpent" value="103407000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -660,7 +674,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.22314675" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.22314675" />
       <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.295764" />
       <window_info id="Web" order="2" sideWeight="0.50163937" side_tool="true" weight="0.295764" />
       <window_info id="Designer" order="3" />
@@ -669,7 +683,7 @@
       <window_info anchor="bottom" id="Application Servers" order="1" weight="0.3295082" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3295082" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.70983607" />
+      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.36945814" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.53770494" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -725,6 +739,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -803,9 +821,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ssm/mapper/GetStudentInfomation.java" />
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/UserLastLoginTime.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/Date.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -1085,10 +1100,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/UserLastLoginTime.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ssm/main/controller/ModifyInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        <state relative-caret-position="46">
+          <caret line="34" column="43" lean-forward="true" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
