@@ -5,14 +5,11 @@ import com.ssm.main.pojo.UserInfo;
 import com.ssm.mapper.ModifyInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.Valid;
 import java.io.*;
 
 @Controller
@@ -36,7 +33,6 @@ public class ModifyInfoController {
     }
 
     public boolean notValid(UserInfo user){
-//        System.out.println(user);
         if(user.getAge()<=0||user.getAge()>=100)    return true;
         if(!(user.getGender().equals("男")||user.getGender().equals("女")))    return true;
         return false;
