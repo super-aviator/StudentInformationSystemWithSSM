@@ -1,7 +1,7 @@
 ## 使用了Spring+SpringMVC+Mybatis框架对小项目进行重写
 
 登录页面
-!(page1)[page1]
+![page1][page1]
 
 
 
