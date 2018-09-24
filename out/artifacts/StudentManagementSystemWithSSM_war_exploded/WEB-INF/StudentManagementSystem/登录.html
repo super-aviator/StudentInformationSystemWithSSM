@@ -1,0 +1,104 @@
+﻿<html>
+<head align="center">
+    <title>学生信息管理系统</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script>
+        function a1() {
+            window.location.href = "注册.html";
+        }
+
+        function createXhr() {
+            var xhr = null;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();//谷歌、火狐等浏览器
+            } else if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");//ie低版本
+            }
+            return xhr;
+        }
+
+        function a2() {
+            if (reg.username.value == "") { //判断用户名是否为空
+                alert("请输入用户名！");
+                form1.username.focus();
+                return;
+            } else if (reg.pwd.value == "") { //判断密码是否为空
+                alert("请输入密码！");
+                form1.pwd.focus();
+                return;
+            } else {
+                //1、获取准备Post内容
+                var username = reg.username.value;
+                var password = reg.pwd.value;
+                //2、创建XMLHttpRequest对象
+                var xhr = createXhr();
+                //3、确定请求参数
+                xhr.open('POST', 'http://localhost:8080/Login', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                //4、重写回调函数
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //使用服务器端返回值
+                        var data = eval("(" + this.response + ")");//包数据解析为json 格式
+                        alert(data.meg);
+                        if (data.meg == "登录成功") {
+                            var tmp = encodeURI($("#user").val());
+                            window.location.href = "首页.html?user=" + tmp;
+                        }
+                    }
+                }
+                //5、发送请求
+                var content = 'username=' + username + '&password=' + password
+                xhr.send(content);
+            }
+        }
+    </script>
+    <style type="text/css">
+        body {
+            background-image: url(images/2.jpg);
+            background-position: 50%;
+            background-size: 150%;
+        }
+
+        .tab {
+            box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, .2);
+            opacity: 0.9
+        }
+    </style>
+</head>
+
+<body align="center">
+<br><br><br><br><br>
+<table align="center" width="430" height="370" class="tab">
+    <form name="reg" id="form1">
+        <tr>
+            <td align="center" width="200" colspan="6"><font face="YaHei" color="dcdcdc" size="6" />学生信息管理系统</td>
+        </tr>
+        <tr>
+            <td align="flex-start" width="120"><font face="YaHei" color="dcdcdc" size="5" style="padding-left:10px"/>账号:
+            </td>
+            <td style="padding-right:10px"><input type="text" class="form-control" name="username" id="user"
+                                                  maxlength="10"></td>
+        </tr>
+        <tr>
+            <td align="flex-start"><font face="YaHei" color="dcdcd" size="5" style="padding-left:10px"/>密码:</td>
+            <td style="padding-right:10px"><input class="form-control" type="password" name="pwd" maxlength="10"></td>
+        </tr>
+        <tr>
+            <td align="flex-start"><font face="YaHei" color="dcdcd" size="5" style="padding-left:10px"/>类别：</td>
+            <td><input type="radio" value="学生" name="xj" style="width:20px;height:20px;margin-left: 20px"
+                       checked>学生<input type="radio" value="教师" name="xj"
+                                        style="width:20px;height:20px;margin-left: 20px">教师
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="3"><input type="button" value="注册" class="btn btn-primary" name="reset1"
+                                                  onclick=a1()> <input type="button" value="登录" class="btn btn-primary"
+                                                                       name="yes" onclick=a2()></td>
+        </tr>
+    </form>
+</table>
+</body>
+</html>  

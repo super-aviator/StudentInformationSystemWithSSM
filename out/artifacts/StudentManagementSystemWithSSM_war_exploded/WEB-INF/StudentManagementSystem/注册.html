@@ -1,0 +1,101 @@
+﻿<html>  
+    <head align="center">
+    <title>注册</title>
+    <link rel="stylesheet" href="bootstrap.min.css">  
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>  
+    <script src="jquery.min.js"></script>  
+        <script>  
+     function a1()  
+    {  
+       var p1=reg.pwd.value;  
+       var p2=reg.repwd.value;  
+       if(p1!=p2)  
+        alert("密码不一致！");  
+    }
+
+    function a3()
+    {
+        window.location.href="登录.html";
+    }
+
+    function createXhr(){
+        var xhr = null;
+        if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();//谷歌、火狐等浏览器
+        }else if(window.ActiveXObject){
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");//ie低版本
+        }
+        return xhr;
+    }  
+    function a2()  
+    {
+         if(reg.username.value == "") { //判断用户名是否为空
+                alert("请输入用户名！");
+                form1.username.focus();
+                return;
+            } else if(reg.pwd.value == "") { //判断密码是否为空
+                alert("请输入密码！");
+                form1.pwd.focus();
+                return;
+            } else if(reg.pwd.value != reg.repwd.value) {
+                                    alert("密码不一致！");
+                form1.pwd.focus();
+                return;
+                            } else if(reg.repwd.value == "") { //判断密码是否为空
+                alert("请输入确认密码！");
+                form1.repwd.focus();
+                return;
+            } else {
+        //1、获取准备Post内容
+        var username = reg.username.value;
+        var password = reg.pwd.value;
+        //2、创建XMLHttpRequest对象
+        var xhr = createXhr();
+        //3、确定请求参数
+        xhr.open('POST','http://localhost:8080/Register',true);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        //4、重写回调函数
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //使用服务器端返回值
+                console.log(this);
+                var data = eval("("+this.response+")");//包数据解析为json 格式 
+                alert(data.meg);
+                if(data.meg == "注册成功"||data.meg=="账号已注册")
+                {
+                    window.history.back(-1);
+                }
+            }
+        }
+        //5、发送请求
+        var content = 'username='+username+'&password='+password;
+        xhr.send(content);
+            }
+        }  
+     </script>
+<style type="text/css">
+body {background-image:url(images/2.jpg);
+    background-position: 50%;
+    background-size:150%
+}
+.tab{
+    box-shadow: 0px 3px 3px 3px rgba(0,0,0,.2);
+    opacity:0.9
+}
+</style>
+    </head>  
+    <body align="center">  
+    <br><br><br><br><br>  
+    <table align="center" width="500" height="400" class="tab">  
+        <form name="reg" id="form1">  
+        <tr><td align="center" width="200" colspan="6"><font face="YaHei" color="dcdcdc" size="6">学生信息管理系统注册</td></tr>  
+        <tr><td align="flex-start" width="120"><font face="YaHei" color="dcdcdc" style="padding-left:10px" size="5">账号:</td><td style="padding-right:30px"><input type="text" class="form-control" name="username" maxlength="10"></td></tr>  
+        <tr><td align="flex-start"><font face="YaHei" color="dcdcdc" style="padding-left:10px" size="5">密码:</td><td style="padding-right:30px"><input type="password" class="form-control" name="pwd" maxlength="10" ></td></tr>  
+    <tr><td align="flex-start"><font face="YaHei" color="dcdcdc" style="padding-left:10px" size="5">确认密码:</td><td style="padding-right:30px"><input type="password" class="form-control" name="repwd" maxlength="10" onblur=a1()></td></tr>  
+        <tr><td align="flex-start"><font face="YaHei" color="dcdcdc" style="padding-left:10px" size="5">类别：</td><td style="padding-right:10px"><input type="radio" value="学生" name="xj"  checked  style="width:20px;height:20px;margin-left: 20px">学生<input type="radio"  style="width:20px;height:20px;margin-left: 20px" value="教师" name="xj" >教师</td></tr>  
+    <tr><td align="center" colspan="3"> <input type="button" class="btn btn-primary" value="已有账号" name="reset1" onclick=a3()> <input type="button" class="btn btn-primary" value="注册" name="yes" onclick=a2()>      </td></tr>  
+        </form>  
+    </table> 
+    </body>  
+</html>  

@@ -1,0 +1,433 @@
+﻿<html>
+
+<head align="center">
+    <title>学生信息管理系统</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script>
+        var data1 = [];
+        var data2 = [];
+        function createXhr() {
+            var xhr = null;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();//谷歌、火狐等浏览器
+            } else if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");//ie低版本
+            }
+            return xhr;
+        }
+        var pos, str, user;
+        str = window.location.href;
+        pos = str.indexOf("=")
+        user = str.substring(pos + 1)
+        $(document).ready(function () {
+            //1、获取准备Post内容
+            var username = user;
+            //2、创建XMLHttpRequest对象
+            var xhr = createXhr();
+            //3、确定请求参数
+
+            xhr.open('POST', 'http://localhost:8080/GetStudentInformation', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //4、重写回调函数
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //使用服务器端返回值
+                    var data = eval("(" + this.response + ")");//包数据解析为json 格式
+                    $("#num8").text(data.name);
+                    $("#nu8").attr("value", data.name);
+                    $("#num0").text("学号：" + data.id);
+                    $("#nu0").attr("value", data.id);
+                    $("#num1").text("年龄：" + data.age);
+                    $("#nu1").attr("value", data.age);
+                    $("#num2").text("性别：" + data.gender);
+                    $("#nu2").attr("value", data.gender);
+                    $("#num3").text("系部：" + data.department);
+                    $("#nu3").attr("value", data.department);
+                    $("#num4").text("班级：" + data.class_name);
+                    $("#nu4").attr("value", data.class_name);
+                    $("#num5").text("班主任：" + data.teacher);
+                    $("#nu5").attr("value", data.teacher);
+                    $("#num6").text("出生年月：" + data.birthday);
+                    $("#nu6").attr("value", data.birthday);
+                    $("#num7").text("入学日期：" + data.enrollment);
+                    $("#nu7").attr("value", data.enrollment);
+                    $("#num9").text(data.lastLogTime);
+                }
+            }
+            //5、发送请求
+            var content = 'username=' + username;
+            xhr.send(content);
+
+
+
+            var xhr = createXhr();
+            xhr.open('POST', 'http://localhost:8080/GetScore', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //4、重写回调函数
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //使用服务器端返回值
+                    var data = eval("(" + this.response + ")");//包数据解析为json 格式
+                    data1 = data;
+                    for (var i = 0; i < data.length; i++) {
+                        var name = "#score" + i;
+                        var name1 = $(name).children("td.sub");
+                        var name2 = $(name).children("td.tea");
+                        var name3 = $(name).children("td.sco");
+                        $(name1).text(data[i].sub_name);
+                        $(name2).text(data[i].sub_teacher);
+                        $(name3).text(data[i].score);
+                        $(name).fadeIn()
+                    }
+                }
+            }
+            //5、发送请求
+            term=1;
+            var content = 'username=' + username + '&term=' + term;
+            xhr.send(content);
+        });
+
+        function term2() {
+            for (var i = 0; i < data1.length; i++) {
+                var name = "#score" + i;
+                $(name).fadeOut()
+            }
+            var str = $("#num0").text();
+            var username = str.substring(str.indexOf("：") + 1);
+            term = 2;
+            var xhr = createXhr();
+            xhr.open('POST', 'http://localhost:8080/GetScore', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //4、重写回调函数
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //使用服务器端返回值
+                    var data = eval("(" + this.response + ")");//包数据解析为json 格式
+                    data2 = data;
+                    for (var i = 0; i < data2.length; i++) {
+                        var name = "#score" + i;
+                        var name1 = $(name).children("td.sub");
+                        var name2 = $(name).children("td.tea");
+                        var name3 = $(name).children("td.sco");
+                        $(name1).text(data2[i].sub_name);
+                        $(name2).text(data2[i].sub_teacher);
+                        $(name3).text(data2[i].score);
+                        $(name).fadeIn()
+                    }
+                }
+            }
+            //5、发送请求
+            var content = 'username=' + username + '&term=' + term;
+            xhr.send(content);
+        }
+
+
+        function term1() {
+            // for (var i = 0; i < data2.length; i++) {
+            //     var name = "#score" + i;
+            //     $(name).fadeOut()
+            // }
+            // for (var i = 0; i < data1.length; i++) {
+            //     var name = "#score" + i;
+            //     var name1 = $(name).children("td.sub");
+            //     var name2 = $(name).children("td.tea");
+            //     var name3 = $(name).children("td.sco");
+            //     $(name1).text(data1[i].sub_name);
+            //     $(name2).text(data1[i].sub_teacher);
+            //     $(name3).text(data1[i].score);
+            //     $(name).fadeIn()
+            // }
+
+            for (var i = 0; i < data2.length; i++) {
+                var name = "#score" + i;
+                $(name).fadeOut()
+            }
+            var str = $("#num0").text();
+            var username = str.substring(str.indexOf("：") + 1);
+            term = 1;
+            var xhr = createXhr();
+            xhr.open('POST', 'http://localhost:8080/GetScore', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //4、重写回调函数
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //使用服务器端返回值
+                    var data = eval("(" + this.response + ")");//包数据解析为json 格式
+                    data2 = data;
+                    for (var i = 0; i < data1.length; i++) {
+                        var name = "#score" + i;
+                        var name1 = $(name).children("td.sub");
+                        var name2 = $(name).children("td.tea");
+                        var name3 = $(name).children("td.sco");
+                        $(name1).text(data2[i].sub_name);
+                        $(name2).text(data2[i].sub_teacher);
+                        $(name3).text(data2[i].score);
+                        $(name).fadeIn()
+                    }
+                }
+            }
+
+            var content = 'username=' + username + '&term=' + term;
+            xhr.send(content);
+        }
+
+
+
+        function exit() {
+            window.location.href = "登录.html";
+        }
+        function mod() {
+            document.getElementById("mod1").style.display = "none"
+            document.getElementById("mod2").style.display = "block"
+        }
+        function mod1() {
+            document.getElementById("mod1").style.display = "block"
+            document.getElementById("mod2").style.display = "none"
+        }
+        function mod2() {
+            //1、获取准备Post内容
+            var name = $("#nu8").val();
+            var str = $("#num0").text();
+            var id = str.substring(str.indexOf("：") + 1);
+            var age = $("#nu1").val();
+            var gender = $("#nu2").val();
+            var department = $("#nu3").val();
+            var class_name = $("#nu4").val();
+            var teacher = $("#nu5").val();
+            var birthday = $("#nu6").val();
+            var enrollment = $("#nu7").val();
+            //2、创建XMLHttpRequest对象
+            var xhr = createXhr();
+            //3、确定请求参数
+            xhr.open('POST', 'http://localhost:8080/ModifyInformation', true);
+            //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            //4、重写回调函数
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //使用服务器端返回值
+                    //console.log(this);
+                    var data = eval("(" + this.response + ")");//包数据解析为json 格式 
+                    alert(data.meg);
+                    if (data.meg == "更改成功") {
+                        $("#num8").text(name);
+                        $("#num1").text("年龄：" + age);
+                        $("#num2").text("性别：" + gender);
+                        $("#num3").text("系部：" + department);
+                        $("#num4").text("班级：" + class_name);
+                        $("#num5").text("班主任：" + teacher);
+                        $("#num6").text("出生年月：" + birthday);
+                        $("#num7").text("入学日期：" + enrollment);
+                        document.getElementById("mod1").style.display = "block"
+                        document.getElementById("mod2").style.display = "none"
+                    }
+                }
+            }
+
+            //5、发送请求
+            var content = '{\"name\":\"' + name + '\",\"id\":' + id + ',\"age\":' + age + ',\"gender\":\"' + gender + '\",\"department\":\"' + department + '\",\"class_name\":\"' + class_name + '\",\"teacher\":\"' + teacher + '\",\"birthday\":\"' + birthday + '\",\"enrollment\":\"' + enrollment + '\"}';
+            console.log(content);
+            xhr.send(content);
+        }
+    </script>
+    <style type="text/css">
+        div.div0 {
+            display: flex;
+            flex-direction: row;
+        }
+
+        div.div1 {
+            border-radius: 25px;
+            background: #696969;
+            width: 25%;
+            height: 80%;
+            margin-left: 10px;
+        }
+
+        div.div2 {
+            float: left;
+            display: flex;
+            flex-direction: column;
+            display: -webkit-flex;
+            /* Safari */
+            -webkit-align-items: flex-start;
+            /* Safari 7.0+ */
+            align-items: flex-start;
+        }
+
+        div.div3 {
+            float: right;
+            width: 100%;
+            padding-left: 10px;
+        }
+
+        div.div4 {
+            display: inline;
+        }
+
+        .sno {
+            color: aliceblue;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body align="center">
+    <h1>学生信息管理系统</h1>
+    <button type="button" class="btn btn-primary" style="position:absolute;right:10px" onclick="exit()">退出</button>
+    <div class="div0">
+        <div class="div1" style="display:block" id="mod1">
+            <h3 id="num8" style="color: aliceblue
+    "></h3>
+            <div class="div2">
+                <p class="sno" id="num0">学号：</p>
+                <p class="sno" id="num1">年龄：</p>
+                <p class="sno" id="num2">性别：</p>
+                <p class="sno" id="num3">系部：</p>
+                <p class="sno" id="num4">班级：</p>
+                <p class="sno" id="num5">班主任：</p>
+                <p class="sno" id="num6">出生年月：</p>
+                <p class="sno" id="num7">入学日期：</p>
+                <p class="sno" id="num9"></p>
+            </div>
+            <button class="btn btn-primary" onclick="mod()">修改信息</button>
+        </div>
+
+        <div class="div1" style="display:none" id="mod2">
+            <div class="div4">
+                <br>
+                <p class="sno">姓名：</p>
+                <input type="text" value="" id="nu8">
+                <br>
+                <br>
+                <p class="sno">年龄：</p>
+                <input type="text" value="" id="nu1">
+                <br>
+                <br>
+                <p class="sno">性别：</p>
+                <input type="text" value="" id="nu2">
+                <br>
+                <br>
+                <p class="sno">系部：</p>
+                <input type="text" value="" id="nu3">
+                <br>
+                <br>
+                <p class="sno">班级：</p>
+                <input type="text" value="" id="nu4">
+                <br>
+                <br>
+                <p class="sno">班主任：</p>
+                <input type="text" value="" id="nu5">
+                <br>
+                <br>
+                <p class="sno">出生年月：</p>
+                <input type="date" value="" id="nu6">
+                <br>
+                <br>
+                <p class="sno">入学日期：</p>
+                <input type="date" value="" id="nu7">
+                <br>
+                <br>
+            </div>
+            <button class="btn btn-primary" onclick="mod1()">返回</button>
+            <button class="btn btn-primary" onclick="mod2()">提交</button>
+        </div>
+
+        <div class="div3">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a onclick="term1()">第一学期</a>
+                </li>
+                <li>
+                    <a onclick="term2()">第二学期</a>
+                </li>
+            </ul>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>学科</th>
+                        <th>任教老师</th>
+                        <th>成绩</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="display:none" id="score0">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score1">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score2">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score3">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score4">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score5">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score6">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score7">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score8">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score9">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score10">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score11">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score12">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                    <tr style="display:none" id="score13">
+                        <td class="sub">无</td>
+                        <td class="tea">无</td>
+                        <td class="sco">无</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

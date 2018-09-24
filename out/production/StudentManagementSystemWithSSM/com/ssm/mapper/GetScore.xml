@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.GetScore">
+
+    <select id="getScore" resultType="com.ssm.main.pojo.ScoreResult" useCache="true">
+        <if test="term=='term1'">
+            SELECT sub_name , sub_teacher AS teacher, score
+            FROM term1 AS terms,
+            subjectinformation AS sub
+            WHERE terms.sub_id = sub.sub_id
+            AND terms.stu_id = #{username} AND terms.sub_id=#{nom}
+        </if>
+
+        <if test="term=='term2'">
+            SELECT sub_name , sub_teacher AS teacher, score
+            FROM term2 AS terms,
+            subjectinformation AS sub
+            WHERE terms.sub_id = sub.sub_id
+            AND terms.stu_id = #{username} AND terms.sub_id=#{nom}
+        </if>
+
+    </select>
+
+    <select id="getAvg" resultType="_double"  useCache="true">
+        <if test="term=='term1'">
+            SELECT Avg(score)
+            FROM term1
+            GROUP BY stu_id
+            HAVING stu_id = #{username}
+        </if>
+
+        <if test="term=='term2'">
+            SELECT Avg(score)
+            FROM term2
+            GROUP BY stu_id
+            HAVING stu_id = #{username}
+        </if>
+    </select>
+
+    <!--<resultMap id="getScoreResultMap" type="ScoreResultList">-->
+    <!--<collection property="scoreResults"-->
+    <!--ofType="com.ssm.main.pojo.ScoreResult" javaType="ArrayList"-->
+    <!--select="getScore" >-->
+
+    <!--<result column="name" property="name" />-->
+    <!--<result column="teacher" property="teacher" />-->
+    <!--<result column="score" property="score" />-->
+    <!--</collection>-->
+    <!--</resultMap>-->
+
+</mapper>

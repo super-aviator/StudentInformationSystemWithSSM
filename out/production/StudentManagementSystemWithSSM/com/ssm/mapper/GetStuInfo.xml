@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ssm.mapper.GetStuInfo">
+
+    <select id="getStuInfo" resultType="com.ssm.main.pojo.UserInfo">
+        SELECT stu_id AS id,stu_name AS name,stu_gender AS gender,stu_age AS age ,
+        stu_birthday AS birthday ,stu_enrollment AS enrollment ,class_name,
+        class_department AS department ,class_teacher AS teacher,
+               studentinformation.last_logintime AS lastLogTime
+    FROM studentinformation,classinformation
+    WHERE studentinformation.class_id=classinformation.class_id
+    AND stu_id=#{username}
+    </select>
+
+    <select id="setLastLoginTime" >
+        UPDATE studentinformation SET last_logintime=NOW() WHERE stu_id=#{username}
+    </select>
+</mapper>

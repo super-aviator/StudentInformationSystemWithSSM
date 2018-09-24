@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ssm.mapper.LogAndReg">
+
+    <select id="login" resultType="String" >
+        SELECT stu_password FROM studentinformation WHERE stu_id= #{username}
+    </select>
+
+    <select id="register" >
+        UPDATE studentinformation SET stu_password=#{password} WHERE stu_id=#{username}
+    </select>
+
+    <select id="hasId" resultType="int">
+        SELECT COUNT(*) FROM studentinformation WHERE stu_id=#{username}
+    </select>
+
+</mapper>
