@@ -1,7 +1,8 @@
 ## 使用了Spring+SpringMVC+Mybatis框架对小项目进行重写
 
 主页面    
-![i8okGR.png](https://s1.ax1x.com/2018/10/06/i8okGR.png)
+![i8o3RI.png](https://s1.ax1x.com/2018/10/06/i8o3RI.png)
+
 
 登录页面  
 ![i8oExx.png](https://s1.ax1x.com/2018/10/06/i8oExx.png)
